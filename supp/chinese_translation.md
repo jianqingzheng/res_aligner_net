@@ -30,7 +30,7 @@
 
 深度学习技术已被证明可以高效地进行三维图像配准。然而，目前的配准策略往往只关注形变的平滑性，从而忽略了复杂的运动模式（如分离运动或滑动运动），尤其是器官的交汇处。因此，在处理附近多个物体、器官的不连续运动时，预测的形变场中会出现相近器官的粘连问题，从而限制配准网络预测的性能上限，在临床应用中会造成不理想的预测结果，如病变或其他异常的误识别和误定位。
 
-因此，本文提出了一种新颖的深度学习网络配准方法（Residual Aligner Network），专门解决这一问题：采用新型的运动可分网络骨架(Motion-Separable structure，MS structure)来捕捉分离运动，并通过残差对齐模块（Residual Aligner module）对多个相邻物体/器官的预测运动进行细化和改进​​。
+因此，本文提出了一种新颖的深度学习网络配准方法（Residual Aligner Network），专门解决这一问题：采用新型的运动可分网络骨架(Motion-Separable structure，MS structure)来捕捉分离运动，并通过残差对齐模块（Residual Aligner module）对多个相邻物体/器官的预测运动进行解耦和精细化​​。
 
 ![image](https://github.com/jianqingzheng/res_aligner_net/assets/39138328/190d79e5-da8b-412b-932b-66b3008c61c9)
 
