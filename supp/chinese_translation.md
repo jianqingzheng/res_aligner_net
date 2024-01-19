@@ -26,16 +26,24 @@
 
 ![image](https://github.com/jianqingzheng/res_aligner_net/assets/39138328/ffb20958-abf7-4391-bc39-b2fe65ef45de)
 
-尽管深度学习技术已被证明能有效执行三维图像配准，但现有策略通常只关注变形的平滑性，忽视了器官交叉处的复杂运动模式（例如分离或滑动运动）。
-因此，本文提出了一种新颖的深度学习网络配准方法（Residual Aligner Network），专门解决这一问题：采用新型的运动可分网络骨架(Motion-Separable structure)来捕捉分离运动，并通过残差对齐模块（Residual Aligner module）对多个相邻物体/器官的预测运动进行细化和改进​​。
+
+深度学习技术已被证明可以高效地进行三维图像配准。然而，目前的配准策略往往只关注形变的平滑性，从而忽略了复杂的运动模式（如分离运动或滑动运动），尤其是器官的交汇处。因此，在处理附近多个物体、器官的不连续运动时，预测的形变场中会出现相近器官的粘连问题，从而限制配准网络预测的性能上限，在临床应用中会造成不理想的预测结果，如病变或其他异常的误识别和误定位。
+
+因此，本文提出了一种新颖的深度学习网络配准方法（Residual Aligner Network），专门解决这一问题：采用新型的运动可分网络骨架(Motion-Separable structure，MS structure)来捕捉分离运动，并通过残差对齐模块（Residual Aligner module）对多个相邻物体/器官的预测运动进行细化和改进​​。
 
 ![image](https://github.com/jianqingzheng/res_aligner_net/assets/39138328/190d79e5-da8b-412b-932b-66b3008c61c9)
 
 
 
-
-## 运动可分上界的理论分析 ##
+## 运动可分网络骨架设计##
 我们首先介绍了有粗到细（Coarse-to-fine）的配准框架，然后分析和量化了粗细配准网络在捕捉大变形（可访问运动范围，Accessible motion range）和保持不连续性（预测运动的可分性）方面的能力。为增强网络在保持大不连续性的同时捕捉大变形的能力，我们提出了一种基于理论发现的新方法。我们的粗细图像配准网络采用MS结构提取特征图，并使用堆叠的FCN与特征金字塔运动可分FCN作为其可访问DDF的最小上限
+
+![image](https://github.com/jianqingzheng/res_aligner_net/assets/39138328/203dfeb7-29ba-485f-bf52-3e2a1826e151)
+
+## 可分性上界理论分析 ##
+
+![image](https://github.com/jianqingzheng/res_aligner_net/assets/39138328/bfd419ae-6bd9-4728-b9e1-62ae0a38f536)
+
 
 ## 实验结果 ##
 
