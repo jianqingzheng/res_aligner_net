@@ -1,4 +1,4 @@
-# MedIA 2024 | 多器官的非连续性形变配准 —— 深度学习网络设计中的运动可分离度与解耦 #
+# MedIA 2024 | 多器官的非连续性形变配准 —— 深度学习网络设计中的运动可分与解耦 #
 
 在医学领域，图像配准是一项关键技术，它涉及将不同时间或不同模态扫描的图像进行精准对齐。这在腹部器官的成像分析中尤为重要，因为腹部器官常常会因为呼吸、消化等生理活动而移动或形变。牛津大学医学图像研究团队探讨了在腹部医学影像配准中遇到的一个尚未解决的难题：多器官间的非连续滑动或分离运动。这些运动的复杂性为准确识别和跟踪各器官带来了困难。
 
@@ -30,18 +30,26 @@
 
 深度学习技术已被证明可以高效地进行三维图像配准。然而，目前的配准策略往往只关注形变的平滑性，从而忽略了复杂的运动模式（如分离运动或滑动运动），尤其是器官的交汇处。因此，在处理附近多个物体、器官的不连续运动时，预测的形变场中会出现相近器官的粘连问题，从而限制配准网络预测的性能上限，在临床应用中会造成不理想的预测结果，如病变或其他异常的误识别和误定位。
 
-因此，本文提出了一种新颖的深度学习网络配准方法（Residual Aligner Network），专门解决这一问题：采用新型的运动可分网络骨架(Motion-Separable structure，MS structure)来捕捉分离运动，并通过残差对齐模块（Residual Aligner module）对多个相邻物体/器官的预测运动进行解耦和精细化​​。
+因此，本文提出了一种新颖的深度学习网络配准方法（Residual Aligner Network），专门解决这一问题：采用新型的运动可分网络骨架（Motion-Separable structures, MS structure）来捕捉分离运动，并通过残差对齐模块（Residual Aligner module）对多个相邻物体/器官的预测运动进行解耦和精细化​​。
 
 ![image](https://github.com/jianqingzheng/res_aligner_net/assets/39138328/190d79e5-da8b-412b-932b-66b3008c61c9)
 
 
 
 ## 运动可分网络骨架设计 ##
-我们首先介绍了有粗到细（Coarse-to-fine）的配准框架，然后分析和量化了粗细配准网络在捕捉大变形（可访问运动范围，Accessible motion range）和保持不连续性（预测运动的可分性）方面的能力。为增强网络在保持大不连续性的同时捕捉大变形的能力，我们提出了一种新的运动可分网络骨架设计方法。该网络骨架通过升采样来得到相对高分别率的稠密形变位移场（Dense Displacement field, DDF），并用空洞卷积（Atrous/dilated convolution）来提取特征图以，并使用堆叠的全卷积网络（FCN）与特征金字塔运动可分全卷积网络（MSFCN）调整运动可分离度
+我们首先介绍了有粗到细（Coarse-to-fine）的配准框架，然后分析和量化了粗细配准网络在捕捉大变形（可捕捉运动范围，Accessible motion range）和保持不连续性（预测运动的可分性，Motion Separability）方面的能力。为增强网络在保持大不连续性的同时捕捉大变形的能力，我们提出了一种新的运动可分网络骨架设计方法，运动可分全卷积网络（MSFCN）。该网络骨架通过升采样来得到相对高分别率的稠密形变位移场（Dense Displacement field, DDF），并用空洞卷积（Atrous/dilated convolution）来提取特征图以保证足够大的感受野（Receptive field）,从而保证足够大的可捕捉运动范围。其中可分离度模式（MS pattern）层数```q```用来调整每层的池化大小```p_k```与空洞率```r_k```，从而保证在相同的可捕捉运动范围情况下，```q```越大的网络获得更大的预测运动的可分性。
 
 ![image](https://github.com/jianqingzheng/res_aligner_net/assets/39138328/203dfeb7-29ba-485f-bf52-3e2a1826e151)
 
 ## 可分性上界理论分析 ##
+
+在文中将该神经网络所预测运动的可分性定义为：
+
+![image](https://github.com/jianqingzheng/res_aligner_net/assets/39138328/79b6f3a3-b04c-4d37-a549-d28e885292ad)
+
+通过理论分析得到预测运动的可分性上界与池化大小```p_k```与空洞率```r_k```的相关性（$a_k\approx p_k(1+2||r_k||_1)/2$）
+
+![image](https://github.com/jianqingzheng/res_aligner_net/assets/39138328/7a604569-4a84-42a5-9652-40a754a92a51)
 
 ![image](https://github.com/jianqingzheng/res_aligner_net/assets/39138328/bfd419ae-6bd9-4728-b9e1-62ae0a38f536)
 
