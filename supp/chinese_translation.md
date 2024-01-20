@@ -47,7 +47,7 @@
 
 ![image](https://github.com/jianqingzheng/res_aligner_net/assets/39138328/79b6f3a3-b04c-4d37-a549-d28e885292ad)
 
-通过理论分析得到预测运动的可分性上界与池化大小```p_k```与空洞率```r_k```的相关性（$a_k\approx p_k(1+2||r_k||_1)/2$）
+通过理论分析得到预测运动的可分性上界与池化大小```p_k```与空洞率```r_k```的相关性（\$ a_k\approx p_k(1+2||r_k||_1)/2 \$）
 
 ![image](https://github.com/jianqingzheng/res_aligner_net/assets/39138328/7a604569-4a84-42a5-9652-40a754a92a51)
 
