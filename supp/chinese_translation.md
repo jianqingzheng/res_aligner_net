@@ -1,5 +1,3 @@
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
-
 # MedIA 2024 | 多器官的非连续性形变配准 —— 深度学习网络设计中的运动可分与解耦 #
 
 在医学领域，图像配准是一项关键技术，它涉及将不同时间或不同模态扫描的图像进行精准对齐。这在腹部器官的成像分析中尤为重要，因为腹部器官常常会因为呼吸、消化等生理活动而移动或形变。牛津大学医学图像研究团队探讨了在腹部医学影像配准中遇到的一个尚未解决的难题：多器官间的非连续滑动或分离运动。这些运动的复杂性为准确识别和跟踪各器官带来了困难。
@@ -39,7 +37,7 @@
 
 
 ## 运动可分网络骨架设计 ##
-我们首先介绍了有粗到细（Coarse-to-fine）的配准框架，然后分析和量化了粗细配准网络在捕捉大变形（可捕捉运动范围，Accessible motion range）和保持不连续性（预测运动的可分性，Motion Separability）方面的能力。为增强网络在保持大不连续性的同时捕捉大变形的能力，我们提出了一种新的运动可分网络骨架设计方法，运动可分全卷积网络（MSFCN）。该网络骨架通过升采样来得到相对高分别率的稠密形变位移场（Dense Displacement field, DDF），并用空洞卷积（Atrous/dilated convolution）来提取特征图以保证足够大的感受野（Receptive field）,从而保证足够大的可捕捉运动范围。其中可分离度模式（MS pattern）层数```q```用来调整每层的池化大小```p_k```与空洞率```r_k```，从而保证在相同的可捕捉运动范围情况下，```q```越大的网络获得更大的预测运动的可分性。
+我们首先介绍了有粗到细（Coarse-to-fine）的配准框架，然后分析和量化了粗细配准网络在捕捉大变形（可捕捉运动范围，Accessible motion range）和保持不连续性（预测运动的可分性，Motion Separability）方面的能力。为增强网络在保持大不连续性的同时捕捉大变形的能力，我们提出了一种新的运动可分网络骨架设计方法，运动可分全卷积网络（MSFCN）。该网络骨架通过升采样来得到相对高分别率的稠密形变位移场（Dense Displacement field, DDF），并用空洞卷积（Atrous/dilated convolution）来提取特征图以保证足够大的感受野（Receptive field）,从而保证足够大的可捕捉运动范围。其中可分离度模式（MS pattern）层数$`q`$用来调整每层的池化大小$`p_k`$与空洞率$`r_k`$，从而保证在相同的可捕捉运动范围情况下，$`q`$越大的网络获得更大的预测运动的可分性。并且当$`q=0`$，则该网络等价于普通的全卷积网络（FCN）。
 
 ![image](https://github.com/jianqingzheng/res_aligner_net/assets/39138328/203dfeb7-29ba-485f-bf52-3e2a1826e151)
 
@@ -49,7 +47,7 @@
 
 ![image](https://github.com/jianqingzheng/res_aligner_net/assets/39138328/79b6f3a3-b04c-4d37-a549-d28e885292ad)
 
-通过理论分析得到预测运动的可分性上界与池化大小```p_k```与空洞率```r_k```的相关性（$ a_k\approx p_k(1+2||r_k||_1)/2 $）
+通过理论分析得到预测运动的可分性上界与池化大小$`p_k`$与空洞率$`r_k`$的相关性（$` a_k\approx p_k(1+2||r_k||_1)/2 `$）
 
 ![image](https://github.com/jianqingzheng/res_aligner_net/assets/39138328/7a604569-4a84-42a5-9652-40a754a92a51)
 
