@@ -93,7 +93,7 @@
 ![image](https://github.com/jianqingzheng/res_aligner_net/assets/39138328/15a850e1-aadc-4f4a-85ea-53ab567e46cb)
 
 
-### 融合实验 ###
+### 消融实验 ###
 
 ![image](https://github.com/jianqingzheng/res_aligner_net/assets/39138328/0e5874d8-c39c-4d15-97ce-34caa90e312d)
 
