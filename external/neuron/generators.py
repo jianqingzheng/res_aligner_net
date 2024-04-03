@@ -8,11 +8,12 @@ import os
 import numpy as np
 import nibabel as nib
 import scipy
-from keras.utils import np_utils
-import keras
-import keras.preprocessing
-import keras.preprocessing.image
-from keras.models import Model
+# from keras.utils import np_utils
+from tensorflow.keras.utils import np_utils
+# import keras
+# import keras.preprocessing
+# import keras.preprocessing.image
+# from keras.models import Model
 
 # local packages
 from ..pynd import ndutils as nd
