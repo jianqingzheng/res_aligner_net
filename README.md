@@ -17,7 +17,7 @@ Code for *Medical Image Analysis* paper [Residual Aligner-based Network (RAN): M
 - [0. Brief Introduction](#0-brief-intro)
 - [1. Installation](#1-installation)
 - [2. Usage](#2-usage)
-  - [2.1. Setup (for unpaired data)](#22-setup-for-unpaired-data)
+  - [2.1. Setup (for unpaired data)](#21-setup-for-unpaired-data)
   - [2.2. Training (>1 week)](#22-training-1-week)
   - [2.3. Inference](#23-inference)
 - [3. Citing this work](#3-citing-this-work)
