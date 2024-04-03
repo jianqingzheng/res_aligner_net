@@ -25,4 +25,4 @@ Code for *Medical Image Analysis* paper [Residual Aligner-based Network (RAN): M
 
 ## 0. Brief Intro ##
 
-![header](supp/Graphic_abstract.pdf)
+![header](supp/Graphic_abstract.png)
