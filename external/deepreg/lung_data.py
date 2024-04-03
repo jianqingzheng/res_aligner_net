@@ -5,7 +5,8 @@ import zipfile
 
 import nibabel as nib
 import numpy as np
-from tensorflow.keras.utils import get_file
+# from tensorflow.keras.utils import get_file
+from tensorflow.python.keras.utils import get_file
 from tqdm import tqdm
 
 # if wget is installed remove the following line from comment

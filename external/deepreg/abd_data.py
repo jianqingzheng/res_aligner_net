@@ -5,7 +5,8 @@ import zipfile
 
 import nibabel as nib
 import numpy as np
-from tensorflow.keras.utils import get_file
+# from tensorflow.keras.utils import get_file
+from tensorflow.python.keras.utils import get_file
 
 PROJECT_DIR = "data/unpaired_ct_abdomen"
 os.chdir(PROJECT_DIR)
