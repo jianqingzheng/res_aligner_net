@@ -99,6 +99,7 @@ pip install pandas==1.2.4
 |       └── ...
 └── ...
 ```
+> The data used for experiments in this paper are publicly available from [abdomen CT](https://github.com/ucl-candi/datasets_deepreg_demo/archive/abdct.zip) and [lung CT](https://zenodo.org/record/3835682).
 
 ### 2.1. Training (optional) ###
 
@@ -111,7 +112,7 @@ pip install pandas==1.2.4
 	
 | Argument              | Description                                	|
 | --------------------- | ----------------------------------------------|
-| `--data_name` 	      | The data folder name                       	|
+| `--data_name` 	      | The data folder name                    |
 | `--model_name`        | The used model                      	     	|
 | `--max_epochs`        | The max epoch number for training 	     	|
 
@@ -130,3 +131,36 @@ python main_train.py --model_name RAN4 --data_name unpaired_ct_abdomen --max_epo
 ```
 4. Check the saved model in ```res_aligner_net/models/unpaired_ct_abdomen/unpaired_ct_abdomen-RAN4/```
 
+
+
+### 2.2a. Inference ###
+
+
+| Argument              | Description                                	|
+| --------------------- | ----------------------------------------------|
+| `--data_name` 	| The data folder name                       	|
+| `--model_name`        | The used model                      	     	|
+
+
+
+
+---
+
+## 3. Citing this work
+
+Any publication that discloses findings arising from using this source code or the network model should cite:
+- Zheng, J. Q., Wang, Z., Huang, B., Lim, N. H., & Papież, B. W. "Residual Aligner-based Network (RAN): Motion-separable structure for coarse-to-fine discontinuous deformable registration." *Medical Image Analysis*, 2024, 91: 103038.
+```bibtex
+@article{ZHENG2024103038,
+	title = {Residual Aligner-based Network (RAN): Motion-separable structure for coarse-to-fine discontinuous deformable registration},
+	journal = {Medical Image Analysis},
+	volume = {91},
+	pages = {103038},
+	year = {2024},
+	issn = {1361-8415},
+	doi = {https://doi.org/10.1016/j.media.2023.103038},
+	url = {https://www.sciencedirect.com/science/article/pii/S1361841523002980},
+	author = {Jian-Qing Zheng and Ziyang Wang and Baoru Huang and Ngee Han Lim and Bartłomiej W. Papież},
+	keywords = {Discontinuous deformable registration, Motion-separable structure, Motion disentanglement, Coarse-to-fine registration},
+}
+```
