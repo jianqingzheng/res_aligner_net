@@ -105,8 +105,8 @@ pip install pandas==1.2.4
 ### 2.2. Training (>1 week) ###
 
 1. Run ```python main_preprocess.py --proc_type train --data_name $data_name```
-2. Run ```python main_train.py --model_name RAN4 --data_name $data_name --max_epochs $max_epochs```
-3. Check the saved model in ```res_aligner_net/models/$data_name/$data_name-RAN4/```
+2. Run ```python main_train.py --model_name $model_name --data_name $data_name --max_epochs $max_epochs```
+3. Check the saved model in ```res_aligner_net/models/$data_name/$data_name-$model_name/```
 
 <div align="center">
 	
@@ -134,7 +134,7 @@ python main_train.py --model_name RAN4 --data_name unpaired_ct_abdomen --max_epo
 
 ### 2.3. Inference ###
 1. Run ```python main_preprocess.py --proc_type test --data_name $data_name```
-2. Run ```python main_infer.py --model_name RAN4 --data_name $data_name```
+2. Run ```python main_infer.py --model_name $model_name --data_name $data_name```
 3. Check the results in ```res_aligner_net/data/$data_name/dataset/test/```
 
 <div align="center">
