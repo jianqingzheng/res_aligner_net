@@ -1,0 +1,13 @@
+@article{ZHENG2024103038,
+title = {Residual Aligner-based Network (RAN): Motion-separable structure for coarse-to-fine discontinuous deformable registration},
+journal = {Medical Image Analysis},
+volume = {91},
+pages = {103038},
+year = {2024},
+issn = {1361-8415},
+doi = {https://doi.org/10.1016/j.media.2023.103038},
+url = {https://www.sciencedirect.com/science/article/pii/S1361841523002980},
+author = {Jian-Qing Zheng and Ziyang Wang and Baoru Huang and Ngee Han Lim and Bartłomiej W. Papież},
+keywords = {Discontinuous deformable registration, Motion-separable structure, Motion disentanglement, Coarse-to-fine registration},
+abstract = {Deformable image registration, the estimation of the spatial transformation between different images, is an important task in medical imaging. Deep learning techniques have been shown to perform 3D image registration efficiently. However, current registration strategies often only focus on the deformation smoothness, which leads to the ignorance of complicated motion patterns (e.g., separate or sliding motions), especially for the intersection of organs. Thus, the performance when dealing with the discontinuous motions of multiple nearby objects is limited, causing undesired predictive outcomes in clinical usage, such as misidentification and mislocalization of lesions or other abnormalities. Consequently, we proposed a novel registration method to address this issue: a new Motion Separable backbone is exploited to capture the separate motion, with a theoretical analysis of the upper bound of the motions’ discontinuity provided. In addition, a novel Residual Aligner module was used to disentangle and refine the predicted motions across the multiple neighboring objects/organs. We evaluate our method, Residual Aligner-based Network (RAN), on abdominal Computed Tomography (CT) scans and it has shown to achieve one of the most accurate unsupervised inter-subject registration for the 9 organs, with the highest-ranked registration of the veins (Dice Similarity Coefficient (%)/Average surface distance (mm): 62%/4.9mm for the vena cava and 34%/7.9mm for the portal and splenic vein), with a smaller model structure and less computation compared to state-of-the-art methods. Furthermore, when applied to lung CT, the RAN achieves comparable results to the best-ranked networks (94%/3.0mm), also with fewer parameters and less computation.}
+}
