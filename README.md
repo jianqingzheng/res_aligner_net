@@ -33,15 +33,14 @@ The research in this paper focuses on solving the problem of multi-organ discont
 To verify the validity of this quantitative metric as well as the accuracy and efficiency of our method, a series of unsupervised alignment experiments are conducted in the paper. These experiments cover nine major organs of the abdomen and lung images. The experimental results show that the method in the paper is not only able to effectively identify and process the complex motions among the organs, but also improves the accuracy and efficiency of the alignment.
 
 The main contributions include:
-
-<li> Discontinuous alignment network: this is the first quantitative study targeting discontinuous deformation alignment based on a deep learning network.
-</li>
-<li> Theoretical analysis: this paper quantifies and defines the maximum range of capturable motion and the upper bound of motion separability in neural networks, providing a theoretical analysis of the upper bound of motion separability. This helps us to understand the range of motion that can be recognised by the network and guides the optimisation of the network structure and parameter settings.   
-</li>
-<li> Motion separable skeleton structure: based on the theoretical analysis in this paper, a novel multi-scale skeleton structure is designed in the paper. This structure enables the network to efficiently predict motion patterns with larger separable upper bounds by using optimised dilation convolution on high-resolution feature maps, while maintaining a capturable motion range with low computational complexity.
-</li>
-<li> Motion decoupling and refinement module: in addition, we propose a Residual Aligner module (RAM) that utilizes confidence levels and mechanisms based on semantic and contextual information to differentiate predicted displacements in different organs or regions. This means that our method can more accurately deal with specific movements in each region.
-</li>
-<li> ACCURATE AND EFFICIENT ALIGNMENT RESULTS: The above-proposed components constitute a novel residual alignment network (RAN) that performs efficient, coarse-to-fine, unsupervised alignment of separable motions on publicly available lung and abdominal CT data, achieving higher accuracy and lower computational cost.
-</li>
+  <li> Discontinuous alignment network: this is the first quantitative study targeting discontinuous deformation alignment based on a deep learning network.
+  </li>
+  <li> Theoretical analysis: this paper quantifies and defines the maximum range of capturable motion and the upper bound of motion separability in neural networks, providing a theoretical analysis of the upper bound of motion separability. This helps us to understand the range of motion that can be recognised by the network and guides the optimisation of the network structure and parameter settings.   
+  </li>
+  <li> Motion separable skeleton structure: based on the theoretical analysis in this paper, a novel multi-scale skeleton structure is designed in the paper. This structure enables the network to efficiently predict motion patterns with larger separable upper bounds by using optimised dilation convolution on high-resolution feature maps, while maintaining a capturable motion range with low computational complexity.
+  </li>
+  <li> Motion decoupling and refinement module: in addition, we propose a Residual Aligner module (RAM) that utilizes confidence levels and mechanisms based on semantic and contextual information to differentiate predicted displacements in different organs or regions. This means that our method can more accurately deal with specific movements in each region.
+  </li>
+  <li> ACCURATE AND EFFICIENT ALIGNMENT RESULTS: The above-proposed components constitute a novel residual alignment network (RAN) that performs efficient, coarse-to-fine, unsupervised alignment of separable motions on publicly available lung and abdominal CT data, achieving higher accuracy and lower computational cost.
+  </li>
 </ul>
