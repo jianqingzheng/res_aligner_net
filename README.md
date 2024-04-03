@@ -17,8 +17,9 @@ Code for *Medical Image Analysis* paper [Residual Aligner-based Network (RAN): M
 - [0. Brief Introduction](#0-brief-intro)
 - [1. Installation](#1-installation)
 - [2. Usage](#2-usage)
-  - [2.1. Training (optional)](#21-training-optional)
-  - [2.2. Inference](#22-inference)
+  - [2.1. Setup (for unpaired data)](#22-setup-for-unpaired-data)
+  - [2.2. Training (>1 week)](#22-training-1-week)
+  - [2.3. Inference](#23-inference)
 - [3. Citing this work](#3-citing-this-work)
 
 ---
@@ -72,7 +73,7 @@ pip install pandas==1.2.4
 ---
 ## 2. Usage ##
 
-\* Setup (for unpaired data)
+### 2.1. Setup (for unpaired data) ###
 ```
 [$DOWNLOAD_DIR]/res_aligner_net/           
 ├── data/[$data_name]/dataset
@@ -101,12 +102,11 @@ pip install pandas==1.2.4
 ```
 > The data used for experiments in this paper are publicly available from [abdomen CT](https://github.com/ucl-candi/datasets_deepreg_demo/archive/abdct.zip) and [lung CT](https://zenodo.org/record/3835682).
 
-### 2.1. Training (optional) ###
+### 2.2. Training (>1 week) ###
 
-1. Set the experimental data in ```res_aligner_net/data/$data_name/dataset/train/```
-2. Run ```python main_preprocess.py --proc_type train --data_name $data_name```
-3. Run ```python main_train.py --model_name RAN4 --data_name $data_name --max_epochs max_epochs```
-4. Check the saved model in ```res_aligner_net/models/$data_name/$data_name-RAN4/```
+1. Run ```python main_preprocess.py --proc_type train --data_name $data_name```
+2. Run ```python main_train.py --model_name RAN4 --data_name $data_name --max_epochs $max_epochs```
+3. Check the saved model in ```res_aligner_net/models/$data_name/$data_name-RAN4/```
 
 <div align="center">
 	
@@ -120,28 +120,43 @@ pip install pandas==1.2.4
 
 \* Example for training (default):
 
-1. Set the experimental data in ```res_aligner_net/data/unpaired_ct_abdomen/dataset/train/```
-2. Run
+1. Run
 ```shell
 python main_preprocess.py --proc_type train --data_name unpaired_ct_abdomen
 ```
-3. Run
+2. Run
 ```shell
 python main_train.py --model_name RAN4 --data_name unpaired_ct_abdomen --max_epochs 0
 ```
-4. Check the saved model in ```res_aligner_net/models/unpaired_ct_abdomen/unpaired_ct_abdomen-RAN4/```
+3. Check the saved model in ```res_aligner_net/models/unpaired_ct_abdomen/unpaired_ct_abdomen-RAN4/```
 
 
 
-### 2.2a. Inference ###
+### 2.3. Inference ###
+1. Run ```python main_preprocess.py --proc_type test --data_name $data_name```
+2. Run ```python main_infer.py --model_name RAN4 --data_name $data_name```
+3. Check the results in ```res_aligner_net/data/$data_name/dataset/test/```
 
+<div align="center">
 
 | Argument              | Description                                	|
 | --------------------- | ----------------------------------------------|
 | `--data_name` 	| The data folder name                       	|
 | `--model_name`        | The used model                      	     	|
 
+</div>
 
+\* Example for inference (default):
+
+1. Run
+```shell
+python main_preprocess.py --proc_type test --data_name unpaired_ct_abdomen
+```
+2. Run
+```shell
+python main_infer.py --model_name RAN4 --data_name unpaired_ct_abdomen
+```
+3. Check the saved model in ```res_aligner_net/models/unpaired_ct_abdomen/unpaired_ct_abdomen-RAN4/```
 
 
 ---
