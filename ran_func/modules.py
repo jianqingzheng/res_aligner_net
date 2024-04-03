@@ -5,17 +5,17 @@ Networks for RAN model
 from typing import Dict, List, Optional, Tuple, Union
 # third party
 import numpy as np
-# import tensorflow.keras.backend as K
-# from tensorflow.keras.models import Model
-# import tensorflow.keras.layers as KL
-# from tensorflow.keras.layers import Layer
-# from tensorflow.keras.layers import Input, concatenate
+import tensorflow.keras.backend as K
+from tensorflow.keras.models import Model
+import tensorflow.keras.layers as KL
+from tensorflow.keras.layers import Layer
+from tensorflow.keras.layers import Input, concatenate
 
-import tensorflow.python.keras.backend as K
-from tensorflow.python.keras.models import Model
-import tensorflow.python.keras.layers as KL
-from tensorflow.python.keras.layers import Layer
-from tensorflow.python.keras.layers import Input, concatenate
+# import tensorflow.python.keras.backend as K
+# from tensorflow.python.keras.models import Model
+# import tensorflow.python.keras.layers as KL
+# from tensorflow.python.keras.layers import Layer
+# from tensorflow.python.keras.layers import Input, concatenate
 
 import tensorflow as tf
 # import tensorflow.compat.v1 as tf
