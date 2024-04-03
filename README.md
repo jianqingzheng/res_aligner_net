@@ -156,7 +156,7 @@ python main_preprocess.py --proc_type test --data_name unpaired_ct_abdomen
 ```shell
 python main_infer.py --model_name RAN4 --data_name unpaired_ct_abdomen
 ```
-3. Check the saved model in ```res_aligner_net/models/unpaired_ct_abdomen/unpaired_ct_abdomen-RAN4/```
+3. Check the results in ```res_aligner_net/data/unpaired_ct_abdomen/dataset/test/```
 
 
 ---
