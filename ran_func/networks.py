@@ -2,8 +2,8 @@
 Networks for RAN model
 """
 # from tensorflow.keras.layers import ReLU, LeakyReLU
-from keras.layers import ReLU, LeakyReLU
-
+from keras.layers import ReLU
+from keras.layers import LeakyReLU
 
 from ran_func.modules import *
 
