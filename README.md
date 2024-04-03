@@ -12,4 +12,17 @@ Code for *Medical Image Analysis* paper [Residual Aligner-based Network (RAN): M
 
 > This repo provides an implementation of the training and inference pipeline of RAN based on TensorFlow and Keras. 
 
-The code will be released soon.
+---
+### Contents ###
+- [0. Brief Introduction](#0-brief-intro)
+- [1. Installation](#1-installation)
+- [2. Usage](#2-usage)
+  - [2.1. Training (optional)](#21-training-optional)
+  - [2.2. Inference](#22-inference)
+- [3. Citing this work](#3-citing-this-work)
+
+---
+
+## 0. Brief Intro ##
+
+![header](supp/Graphic_abstract.pdf)
