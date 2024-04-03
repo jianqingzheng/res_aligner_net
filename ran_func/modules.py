@@ -11,11 +11,11 @@ import numpy as np
 # from tensorflow.keras.layers import Layer
 # from tensorflow.keras.layers import Input, concatenate
 
-import keras.backend as K
-from keras.models import Model
-import keras.layers as KL
-from keras.layers import Layer
-from keras.layers import Input, concatenate
+import tensorflow.python.keras.backend as K
+from tensorflow.python.keras.models import Model
+import tensorflow.python.keras.layers as KL
+from tensorflow.python.keras.layers import Layer
+from tensorflow.python.keras.layers import Input, concatenate
 
 import tensorflow as tf
 # import tensorflow.compat.v1 as tf
