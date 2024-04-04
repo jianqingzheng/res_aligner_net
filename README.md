@@ -183,7 +183,7 @@ python main_infer.py --model_name RAN4 --data_name unpaired_ct_abdomen
 
 ---
 ## 3. Demo ##
-A demo can be found in the provided [notebook](https://github/jianqingzheng/res_aligner_net/blob/main/res_aligner_net.ipynb)
+A demo can be found in the provided [notebook](https://github.com/jianqingzheng/res_aligner_net/blob/main/res_aligner_net.ipynb)
 or it can be easily run via [![Explore RAN in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jianqingzheng/res_aligner_net/blob/main/res_aligner_net.ipynb).
 
 ---
