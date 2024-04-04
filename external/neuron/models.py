@@ -17,11 +17,13 @@ from . import layers
 # third party
 import numpy as np
 import tensorflow as tf
-import keras
-import keras.layers as KL
-from keras.models import Model
-import keras.backend as K
-from keras.constraints import maxnorm
+# import keras
+from tensorflow import keras
+# import keras.layers as KL
+import tensorflow.keras.layers as KL
+from tensorflow.keras.models import Model
+import tensorflow.keras.backend as K
+# from tensorflow.keras.constraints import maxnorm
 
 
 def dilation_net(nb_features,
@@ -802,155 +804,155 @@ def single_ae(enc_size,
 
 
 
-def design_dnn(nb_features, input_shape, nb_levels, conv_size, nb_labels,
-               feat_mult=1,
-               pool_size=2,
-               padding='same',
-               activation='elu',
-               final_layer='dense-sigmoid',
-               conv_dropout=0,
-               conv_maxnorm=0,
-               nb_input_features=1,
-               batch_norm=False,
-               name=None,
-               prefix=None,
-               use_strided_convolution_maxpool=True,
-               nb_conv_per_level=2):
-    """
-    "deep" cnn with dense or global max pooling layer @ end...
-
-    Could use sequential...
-    """
-
-    model_name = name
-    if model_name is None:
-        model_name = 'model_1'
-    if prefix is None:
-        prefix = model_name
-
-    ndims = len(input_shape)
-    input_shape = tuple(input_shape)
-
-    convL = getattr(KL, 'Conv%dD' % ndims)
-    maxpool = KL.MaxPooling3D if len(input_shape) == 3 else KL.MaxPooling2D
-    if isinstance(pool_size, int):
-        pool_size = (pool_size,) * ndims
-
-    # kwargs for the convolution layer
-    conv_kwargs = {'padding': padding, 'activation': activation}
-    if conv_maxnorm > 0:
-        conv_kwargs['kernel_constraint'] = maxnorm(conv_maxnorm)
-
-    # initialize a dictionary
-    enc_tensors = {}
-
-    # first layer: input
-    name = '%s_input' % prefix
-    enc_tensors[name] = KL.Input(shape=input_shape + (nb_input_features,), name=name)
-    last_tensor = enc_tensors[name]
-
-    # down arm:
-    # add nb_levels of conv + ReLu + conv + ReLu. Pool after each of first nb_levels - 1 layers
-    for level in range(nb_levels):
-        for conv in range(nb_conv_per_level):
-            if conv_dropout > 0:
-                name = '%s_dropout_%d_%d' % (prefix, level, conv)
-                enc_tensors[name] = KL.Dropout(conv_dropout)(last_tensor)
-                last_tensor = enc_tensors[name]
-
-            name = '%s_conv_%d_%d' % (prefix, level, conv)
-            nb_lvl_feats = np.round(nb_features*feat_mult**level).astype(int)
-            enc_tensors[name] = convL(nb_lvl_feats, conv_size, **conv_kwargs, name=name)(last_tensor)
-            last_tensor = enc_tensors[name]
-
-        # max pool
-        if use_strided_convolution_maxpool:
-            name = '%s_strided_conv_%d' % (prefix, level)
-            enc_tensors[name] = convL(nb_lvl_feats, pool_size, **conv_kwargs, name=name)(last_tensor)
-            last_tensor = enc_tensors[name]
-        else:
-            name = '%s_maxpool_%d' % (prefix, level)
-            enc_tensors[name] = maxpool(pool_size=pool_size, name=name, padding=padding)(last_tensor)
-            last_tensor = enc_tensors[name]
-
-    # dense layer
-    if final_layer == 'dense-sigmoid':
-
-        name = "%s_flatten" % prefix
-        enc_tensors[name] = KL.Flatten(name=name)(last_tensor)
-        last_tensor = enc_tensors[name]
-
-        name = '%s_dense' % prefix
-        enc_tensors[name] = KL.Dense(1, name=name, activation="sigmoid")(last_tensor)
-
-    elif final_layer == 'dense-tanh':
-
-        name = "%s_flatten" % prefix
-        enc_tensors[name] = KL.Flatten(name=name)(last_tensor)
-        last_tensor = enc_tensors[name]
-
-        name = '%s_dense' % prefix
-        enc_tensors[name] = KL.Dense(1, name=name)(last_tensor)
-        last_tensor = enc_tensors[name]
-
-        # Omittting BatchNorm for now, it seems to have a cpu vs gpu problem
-        # https://github.com/tensorflow/tensorflow/pull/8906
-        # https://github.com/fchollet/keras/issues/5802
-        # name = '%s_%s_bn' % prefix
-        # enc_tensors[name] = KL.BatchNormalization(axis=batch_norm, name=name)(last_tensor)
-        # last_tensor = enc_tensors[name]
-
-        name = '%s_%s_tanh' % prefix
-        enc_tensors[name] = KL.Activation(activation="tanh", name=name)(last_tensor)
-
-    elif final_layer == 'dense-softmax':
-
-        name = "%s_flatten" % prefix
-        enc_tensors[name] = KL.Flatten(name=name)(last_tensor)
-        last_tensor = enc_tensors[name]
-
-        name = '%s_dense' % prefix
-        enc_tensors[name] = KL.Dense(nb_labels, name=name, activation="softmax")(last_tensor)
-
-    # global max pooling layer
-    elif final_layer == 'myglobalmaxpooling':
-
-        name = '%s_batch_norm' % prefix
-        enc_tensors[name] = KL.BatchNormalization(axis=batch_norm, name=name)(last_tensor)
-        last_tensor = enc_tensors[name]
-
-        name = '%s_global_max_pool' % prefix
-        enc_tensors[name] = KL.Lambda(_global_max_nd, name=name)(last_tensor)
-        last_tensor = enc_tensors[name]
-
-        name = '%s_global_max_pool_reshape' % prefix
-        enc_tensors[name] = KL.Reshape((1, 1), name=name)(last_tensor)
-        last_tensor = enc_tensors[name]
-
-        # cannot do activation in lambda layer. Could code inside, but will do extra lyaer
-        name = '%s_global_max_pool_sigmoid' % prefix
-        enc_tensors[name] = KL.Conv1D(1, 1, name=name, activation="sigmoid", use_bias=True)(last_tensor)
-
-    elif final_layer == 'globalmaxpooling':
-
-        name = '%s_conv_to_featmaps' % prefix
-        enc_tensors[name] = KL.Conv3D(2, 1, name=name, activation="relu")(last_tensor)
-        last_tensor = enc_tensors[name]
-
-        name = '%s_global_max_pool' % prefix
-        enc_tensors[name] = KL.GlobalMaxPooling3D(name=name)(last_tensor)
-        last_tensor = enc_tensors[name]
-
-        # cannot do activation in lambda layer. Could code inside, but will do extra lyaer
-        name = '%s_global_max_pool_softmax' % prefix
-        enc_tensors[name] = KL.Activation('softmax', name=name)(last_tensor)
-
-    last_tensor = enc_tensors[name]
-
-    # create the model
-    model = Model(inputs=[enc_tensors['%s_input' % prefix]], outputs=[last_tensor], name=model_name)
-    return model
-
+# def design_dnn(nb_features, input_shape, nb_levels, conv_size, nb_labels,
+#                feat_mult=1,
+#                pool_size=2,
+#                padding='same',
+#                activation='elu',
+#                final_layer='dense-sigmoid',
+#                conv_dropout=0,
+#                conv_maxnorm=0,
+#                nb_input_features=1,
+#                batch_norm=False,
+#                name=None,
+#                prefix=None,
+#                use_strided_convolution_maxpool=True,
+#                nb_conv_per_level=2):
+#     """
+#     "deep" cnn with dense or global max pooling layer @ end...
+#
+#     Could use sequential...
+#     """
+#
+#     model_name = name
+#     if model_name is None:
+#         model_name = 'model_1'
+#     if prefix is None:
+#         prefix = model_name
+#
+#     ndims = len(input_shape)
+#     input_shape = tuple(input_shape)
+#
+#     convL = getattr(KL, 'Conv%dD' % ndims)
+#     maxpool = KL.MaxPooling3D if len(input_shape) == 3 else KL.MaxPooling2D
+#     if isinstance(pool_size, int):
+#         pool_size = (pool_size,) * ndims
+#
+#     # kwargs for the convolution layer
+#     conv_kwargs = {'padding': padding, 'activation': activation}
+#     if conv_maxnorm > 0:
+#         conv_kwargs['kernel_constraint'] = maxnorm(conv_maxnorm)
+#
+#     # initialize a dictionary
+#     enc_tensors = {}
+#
+#     # first layer: input
+#     name = '%s_input' % prefix
+#     enc_tensors[name] = KL.Input(shape=input_shape + (nb_input_features,), name=name)
+#     last_tensor = enc_tensors[name]
+#
+#     # down arm:
+#     # add nb_levels of conv + ReLu + conv + ReLu. Pool after each of first nb_levels - 1 layers
+#     for level in range(nb_levels):
+#         for conv in range(nb_conv_per_level):
+#             if conv_dropout > 0:
+#                 name = '%s_dropout_%d_%d' % (prefix, level, conv)
+#                 enc_tensors[name] = KL.Dropout(conv_dropout)(last_tensor)
+#                 last_tensor = enc_tensors[name]
+#
+#             name = '%s_conv_%d_%d' % (prefix, level, conv)
+#             nb_lvl_feats = np.round(nb_features*feat_mult**level).astype(int)
+#             enc_tensors[name] = convL(nb_lvl_feats, conv_size, **conv_kwargs, name=name)(last_tensor)
+#             last_tensor = enc_tensors[name]
+#
+#         # max pool
+#         if use_strided_convolution_maxpool:
+#             name = '%s_strided_conv_%d' % (prefix, level)
+#             enc_tensors[name] = convL(nb_lvl_feats, pool_size, **conv_kwargs, name=name)(last_tensor)
+#             last_tensor = enc_tensors[name]
+#         else:
+#             name = '%s_maxpool_%d' % (prefix, level)
+#             enc_tensors[name] = maxpool(pool_size=pool_size, name=name, padding=padding)(last_tensor)
+#             last_tensor = enc_tensors[name]
+#
+#     # dense layer
+#     if final_layer == 'dense-sigmoid':
+#
+#         name = "%s_flatten" % prefix
+#         enc_tensors[name] = KL.Flatten(name=name)(last_tensor)
+#         last_tensor = enc_tensors[name]
+#
+#         name = '%s_dense' % prefix
+#         enc_tensors[name] = KL.Dense(1, name=name, activation="sigmoid")(last_tensor)
+#
+#     elif final_layer == 'dense-tanh':
+#
+#         name = "%s_flatten" % prefix
+#         enc_tensors[name] = KL.Flatten(name=name)(last_tensor)
+#         last_tensor = enc_tensors[name]
+#
+#         name = '%s_dense' % prefix
+#         enc_tensors[name] = KL.Dense(1, name=name)(last_tensor)
+#         last_tensor = enc_tensors[name]
+#
+#         # Omittting BatchNorm for now, it seems to have a cpu vs gpu problem
+#         # https://github.com/tensorflow/tensorflow/pull/8906
+#         # https://github.com/fchollet/keras/issues/5802
+#         # name = '%s_%s_bn' % prefix
+#         # enc_tensors[name] = KL.BatchNormalization(axis=batch_norm, name=name)(last_tensor)
+#         # last_tensor = enc_tensors[name]
+#
+#         name = '%s_%s_tanh' % prefix
+#         enc_tensors[name] = KL.Activation(activation="tanh", name=name)(last_tensor)
+#
+#     elif final_layer == 'dense-softmax':
+#
+#         name = "%s_flatten" % prefix
+#         enc_tensors[name] = KL.Flatten(name=name)(last_tensor)
+#         last_tensor = enc_tensors[name]
+#
+#         name = '%s_dense' % prefix
+#         enc_tensors[name] = KL.Dense(nb_labels, name=name, activation="softmax")(last_tensor)
+#
+#     # global max pooling layer
+#     elif final_layer == 'myglobalmaxpooling':
+#
+#         name = '%s_batch_norm' % prefix
+#         enc_tensors[name] = KL.BatchNormalization(axis=batch_norm, name=name)(last_tensor)
+#         last_tensor = enc_tensors[name]
+#
+#         name = '%s_global_max_pool' % prefix
+#         enc_tensors[name] = KL.Lambda(_global_max_nd, name=name)(last_tensor)
+#         last_tensor = enc_tensors[name]
+#
+#         name = '%s_global_max_pool_reshape' % prefix
+#         enc_tensors[name] = KL.Reshape((1, 1), name=name)(last_tensor)
+#         last_tensor = enc_tensors[name]
+#
+#         # cannot do activation in lambda layer. Could code inside, but will do extra lyaer
+#         name = '%s_global_max_pool_sigmoid' % prefix
+#         enc_tensors[name] = KL.Conv1D(1, 1, name=name, activation="sigmoid", use_bias=True)(last_tensor)
+#
+#     elif final_layer == 'globalmaxpooling':
+#
+#         name = '%s_conv_to_featmaps' % prefix
+#         enc_tensors[name] = KL.Conv3D(2, 1, name=name, activation="relu")(last_tensor)
+#         last_tensor = enc_tensors[name]
+#
+#         name = '%s_global_max_pool' % prefix
+#         enc_tensors[name] = KL.GlobalMaxPooling3D(name=name)(last_tensor)
+#         last_tensor = enc_tensors[name]
+#
+#         # cannot do activation in lambda layer. Could code inside, but will do extra lyaer
+#         name = '%s_global_max_pool_softmax' % prefix
+#         enc_tensors[name] = KL.Activation('softmax', name=name)(last_tensor)
+#
+#     last_tensor = enc_tensors[name]
+#
+#     # create the model
+#     model = Model(inputs=[enc_tensors['%s_input' % prefix]], outputs=[last_tensor], name=model_name)
+#     return model
+#
 
 
 ###############################################################################
