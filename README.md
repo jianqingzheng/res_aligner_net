@@ -120,9 +120,8 @@ pip install pyquaternion==0.9.9
 | `--model_name`        | The used model                      	     	|
 | `--max_epochs`        | The max epoch number for training 	     	|
 
-> `max_epochs==0` for training from scratch
-
 </div>
+> `max_epochs==0` for training from scratch
 
 \* Example for training (default):
 
@@ -150,11 +149,10 @@ python main_train.py --model_name RAN4 --data_name unpaired_ct_abdomen --max_epo
 | `--model_name`        | The used network structure                    |
 | `--model_id`         | The index of the model                      	|
 
+</div>
 > `model_id==1` for a model after synthetic training,
 > `model_id==2` for a model after real training,
 > `model_id==3` for the model trained according to the paper's settings.
-
-</div>
 
 \* Example for inference (default):
 
