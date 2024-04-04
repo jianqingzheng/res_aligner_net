@@ -100,8 +100,7 @@ pip install pyquaternion==0.9.9
 └── ...
 ```
 
-1a. Run ```python external/deepreg/abd_data.py``` to download and setup abdominal CT
-1b. Run ```python external/deepreg/lung_data.py``` to download and setup lung CT
+1. Run ```python external/deepreg/abd_data.py``` to download and setup abdominal CT,\ or Run ```python external/deepreg/lung_data.py``` to download and setup lung CT
 2. Run ```python main_preprocess.py --proc_type train --data_name $data_name```
 3. Run ```python main_preprocess.py --proc_type test --data_name $data_name```
 
