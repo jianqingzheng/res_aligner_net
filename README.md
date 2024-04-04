@@ -100,7 +100,7 @@ pip install pyquaternion==0.9.9
 └── ...
 ```
 
-1. Run ```python external/deepreg/abd_data.py``` to download and setup abdominal CT,\\ or Run ```python external/deepreg/lung_data.py``` to download and setup lung CT
+1. Run ```python external/deepreg/abd_data.py``` to download and setup abdominal CT,\n or Run ```python external/deepreg/lung_data.py``` to download and setup lung CT
 2. Run ```python main_preprocess.py --proc_type train --data_name $data_name```
 3. Run ```python main_preprocess.py --proc_type test --data_name $data_name```
 
@@ -120,6 +120,7 @@ pip install pyquaternion==0.9.9
 | `--max_epochs`        | The max epoch number for training 	     	|
 
 </div>
+
 > `max_epochs==0` for training from scratch
 
 \* Example for training (default):
@@ -149,6 +150,7 @@ python main_train.py --model_name RAN4 --data_name unpaired_ct_abdomen --max_epo
 | `--model_id`         | The index of the model                      	|
 
 </div>
+
 > `model_id==1` for a model after synthetic training,
 > `model_id==2` for a model after real training,
 > `model_id==3` for the model trained according to the paper's settings.
