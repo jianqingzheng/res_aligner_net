@@ -7,7 +7,7 @@
 
 </div>
 
-Code for *Medical Image Analysis* paper [Residual Aligner-based Network (RAN): Motion-Aware Structure for Coarse-to-fine Deformable Image Registration](https://doi.org/10.1016/j.media.2023.103038)
+Code for *Medical Image Analysis* paper [Residual Aligner-based Network (RAN): Motion-Separable Structure for Coarse-to-fine Deformable Image Registration](https://doi.org/10.1016/j.media.2023.103038)
 
 
 > This repo provides an implementation of the training and inference pipeline of RAN based on TensorFlow and Keras. 
