@@ -383,177 +383,177 @@ class LocalBias(Layer):
 #                 return outputs
 
 
-
-class LocalParam_new(Layer):
-
-    def __init__(self,
-                 shape,
-                 my_initializer='RandomNormal',
-                 name=None,
-                 mult=1.0,
-                 **kwargs):
-        
-        self.shape = tuple([1, *shape])
-        self.my_initializer = my_initializer
-        self.mult = mult
-
-        super(LocalParam_new, self).__init__(**kwargs)
-
-    def build(self, input_shape):
-
-        # Create a trainable weight variable for this layer.
-        self.kernel = self.add_weight(name='kernel', 
-                                      shape=tuple(self.shape[1:]),
-                                      initializer='uniform',
-                                      trainable=True)
-        super(LocalParam_new, self).build(input_shape)  # Be sure to call this at the end
-
-    def call(self, _):
-        # make sure it has a shape
-        if self.shape is not None:
-            self.kernel = tf.reshape(self.kernel, self.shape)
-        return self.kernel
-
-    def compute_output_shape(self, input_shape):
-        if self.shape is None:
-            return input_shape
-        else:
-            return self.shape
-
-
-class LocalParam(Layer):
-    """ 
-    Local Parameter layer: each pixel/voxel has its own parameter (one parameter)
-    out[v] = b
-
-    using code from 
-    https://github.com/YerevaNN/R-NET-in-Keras/blob/master/layers/SharedWeight.py
-    and
-    https://github.com/keras-team/keras/blob/ee02d256611b17d11e37b86bd4f618d7f2a37d84/keras/engine/input_layer.py
-    """
-
-    def __init__(self,
-                 shape,
-                 my_initializer='RandomNormal',
-                 name=None,
-                 mult=1.0,
-                 **kwargs):
-        self.shape = [1, *shape]
-        self.my_initializer = my_initializer
-        self.mult = mult
-
-        if not name:
-            prefix = 'param'
-            name = '%s_%d' % (prefix, K.get_uid(prefix))
-        Layer.__init__(self, name=name, **kwargs)
-
-        # Create a trainable weight variable for this layer.
-        with K.name_scope(self.name):
-            self.kernel = self.add_weight(name='kernel', 
-                                            shape=self.shape,
-                                            initializer=self.my_initializer,
-                                            trainable=True)
-
-        # prepare output tensor, which is essentially the kernel.
-        output_tensor = self.kernel * self.mult
-        output_tensor._keras_shape = self.shape
-        output_tensor._uses_learning_phase = False
-        output_tensor._keras_history = (self, 0, 0)
-        output_tensor._batch_input_shape = self.shape
-
-        self.trainable = True
-        self.built = True    
-        self.is_placeholder = False
-
-        # create new node
-        Node(self,
-            inbound_layers=[],
-            node_indices=[],
-            tensor_indices=[],
-            input_tensors=[],
-            output_tensors=[output_tensor],
-            input_masks=[],
-            output_masks=[None],
-            input_shapes=[],
-            output_shapes=[self.shape])
-
-    def get_config(self):
-        config = {
-            '_batch_input_shape': self.shape,
-            '_keras_shape': self.shape,
-            'name': self.name
-        }
-        return config
-
-    def call(self, _):
-        z = self.get_output()
-        return tf.reshape(z, self.shape)
-
-    def compute_output_shape(self, input_shape):
-        return tuple(self.shape)
-
-    def get_output(self):  # call() would force inputs
-        outputs = self._inbound_nodes[0].output_tensors
-        if len(outputs) == 1:
-            return outputs[0]
-        else:
-            return outputs
-
-
-class MeanStream(Layer):
-    """ 
-    Maintain stream of data mean. 
-
-    cap refers to mainting an approximation of up to that number of subjects -- that is,
-    any incoming datapoint will have at least 1/cap weight.
-    """
-
-    def __init__(self, cap=100, **kwargs):
-        self.cap = K.variable(cap, dtype='float32')
-        super(MeanStream, self).__init__(**kwargs)
-
-    def build(self, input_shape):
-        # Create mean and count
-        # These are weights because just maintaining variables don't get saved with the model, and we'd like
-        # to have these numbers saved when we save the model.
-        # But we need to make sure that the weights are untrainable.
-        self.mean = self.add_weight(name='mean', 
-                                      shape=input_shape[1:],
-                                      initializer='zeros',
-                                      trainable=False)
-        self.count = self.add_weight(name='count', 
-                                      shape=[1],
-                                      initializer='zeros',
-                                      trainable=False)
-
-        # self.mean = K.zeros(input_shape[1:], name='mean')
-        # self.count = K.variable(0.0, name='count')
-        super(MeanStream, self).build(input_shape)  # Be sure to call this somewhere!
-
-    def call(self, x):
-        # previous mean
-        pre_mean = self.mean
-    
-        # compute this batch stats
-        this_sum = tf.reduce_sum(x, 0)
-        this_bs = tf.cast(K.shape(x)[0], 'float32')  # this batch size
-        
-        # increase count and compute weights
-        new_count = self.count + this_bs
-        alpha = this_bs/K.minimum(new_count, self.cap)
-        
-        # compute new mean. Note that once we reach self.cap (e.g. 1000), the 'previous mean' matters less
-        new_mean = pre_mean * (1-alpha) + (this_sum/this_bs) * alpha
-        
-        updates = [(self.count, new_count), (self.mean, new_mean)]
-        self.add_update(updates, x)
-        
-        # the first few 1000 should not matter that much towards this cost
-        return K.minimum(1., new_count/self.cap) * K.expand_dims(new_mean, 0)        
-
-    def compute_output_shape(self, input_shape):
-        return input_shape
-
+#
+# class LocalParam_new(Layer):
+#
+#     def __init__(self,
+#                  shape,
+#                  my_initializer='RandomNormal',
+#                  name=None,
+#                  mult=1.0,
+#                  **kwargs):
+#
+#         self.shape = tuple([1, *shape])
+#         self.my_initializer = my_initializer
+#         self.mult = mult
+#
+#         super(LocalParam_new, self).__init__(**kwargs)
+#
+#     def build(self, input_shape):
+#
+#         # Create a trainable weight variable for this layer.
+#         self.kernel = self.add_weight(name='kernel',
+#                                       shape=tuple(self.shape[1:]),
+#                                       initializer='uniform',
+#                                       trainable=True)
+#         super(LocalParam_new, self).build(input_shape)  # Be sure to call this at the end
+#
+#     def call(self, _):
+#         # make sure it has a shape
+#         if self.shape is not None:
+#             self.kernel = tf.reshape(self.kernel, self.shape)
+#         return self.kernel
+#
+#     def compute_output_shape(self, input_shape):
+#         if self.shape is None:
+#             return input_shape
+#         else:
+#             return self.shape
+#
+#
+# class LocalParam(Layer):
+#     """
+#     Local Parameter layer: each pixel/voxel has its own parameter (one parameter)
+#     out[v] = b
+#
+#     using code from
+#     https://github.com/YerevaNN/R-NET-in-Keras/blob/master/layers/SharedWeight.py
+#     and
+#     https://github.com/keras-team/keras/blob/ee02d256611b17d11e37b86bd4f618d7f2a37d84/keras/engine/input_layer.py
+#     """
+#
+#     def __init__(self,
+#                  shape,
+#                  my_initializer='RandomNormal',
+#                  name=None,
+#                  mult=1.0,
+#                  **kwargs):
+#         self.shape = [1, *shape]
+#         self.my_initializer = my_initializer
+#         self.mult = mult
+#
+#         if not name:
+#             prefix = 'param'
+#             name = '%s_%d' % (prefix, K.get_uid(prefix))
+#         Layer.__init__(self, name=name, **kwargs)
+#
+#         # Create a trainable weight variable for this layer.
+#         with K.name_scope(self.name):
+#             self.kernel = self.add_weight(name='kernel',
+#                                             shape=self.shape,
+#                                             initializer=self.my_initializer,
+#                                             trainable=True)
+#
+#         # prepare output tensor, which is essentially the kernel.
+#         output_tensor = self.kernel * self.mult
+#         output_tensor._keras_shape = self.shape
+#         output_tensor._uses_learning_phase = False
+#         output_tensor._keras_history = (self, 0, 0)
+#         output_tensor._batch_input_shape = self.shape
+#
+#         self.trainable = True
+#         self.built = True
+#         self.is_placeholder = False
+#
+#         # create new node
+#         Node(self,
+#             inbound_layers=[],
+#             node_indices=[],
+#             tensor_indices=[],
+#             input_tensors=[],
+#             output_tensors=[output_tensor],
+#             input_masks=[],
+#             output_masks=[None],
+#             input_shapes=[],
+#             output_shapes=[self.shape])
+#
+#     def get_config(self):
+#         config = {
+#             '_batch_input_shape': self.shape,
+#             '_keras_shape': self.shape,
+#             'name': self.name
+#         }
+#         return config
+#
+#     def call(self, _):
+#         z = self.get_output()
+#         return tf.reshape(z, self.shape)
+#
+#     def compute_output_shape(self, input_shape):
+#         return tuple(self.shape)
+#
+#     def get_output(self):  # call() would force inputs
+#         outputs = self._inbound_nodes[0].output_tensors
+#         if len(outputs) == 1:
+#             return outputs[0]
+#         else:
+#             return outputs
+#
+#
+# class MeanStream(Layer):
+#     """
+#     Maintain stream of data mean.
+#
+#     cap refers to mainting an approximation of up to that number of subjects -- that is,
+#     any incoming datapoint will have at least 1/cap weight.
+#     """
+#
+#     def __init__(self, cap=100, **kwargs):
+#         self.cap = K.variable(cap, dtype='float32')
+#         super(MeanStream, self).__init__(**kwargs)
+#
+#     def build(self, input_shape):
+#         # Create mean and count
+#         # These are weights because just maintaining variables don't get saved with the model, and we'd like
+#         # to have these numbers saved when we save the model.
+#         # But we need to make sure that the weights are untrainable.
+#         self.mean = self.add_weight(name='mean',
+#                                       shape=input_shape[1:],
+#                                       initializer='zeros',
+#                                       trainable=False)
+#         self.count = self.add_weight(name='count',
+#                                       shape=[1],
+#                                       initializer='zeros',
+#                                       trainable=False)
+#
+#         # self.mean = K.zeros(input_shape[1:], name='mean')
+#         # self.count = K.variable(0.0, name='count')
+#         super(MeanStream, self).build(input_shape)  # Be sure to call this somewhere!
+#
+#     def call(self, x):
+#         # previous mean
+#         pre_mean = self.mean
+#
+#         # compute this batch stats
+#         this_sum = tf.reduce_sum(x, 0)
+#         this_bs = tf.cast(K.shape(x)[0], 'float32')  # this batch size
+#
+#         # increase count and compute weights
+#         new_count = self.count + this_bs
+#         alpha = this_bs/K.minimum(new_count, self.cap)
+#
+#         # compute new mean. Note that once we reach self.cap (e.g. 1000), the 'previous mean' matters less
+#         new_mean = pre_mean * (1-alpha) + (this_sum/this_bs) * alpha
+#
+#         updates = [(self.count, new_count), (self.mean, new_mean)]
+#         self.add_update(updates, x)
+#
+#         # the first few 1000 should not matter that much towards this cost
+#         return K.minimum(1., new_count/self.cap) * K.expand_dims(new_mean, 0)
+#
+#     def compute_output_shape(self, input_shape):
+#         return input_shape
+#
 
 class LocalLinear(Layer):
     """ 
