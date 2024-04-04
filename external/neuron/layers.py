@@ -27,7 +27,7 @@ from tensorflow.keras import backend as K
 # from tensorflow.keras.optimizers.legacy import interfaces
 # from tensorflow import keras
 from tensorflow.keras.layers import Layer, InputLayer, Input
-from keras.engine.topology import Node
+# from keras.engine.topology import Node
 
 
 # local
