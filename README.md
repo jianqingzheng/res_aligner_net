@@ -157,7 +157,7 @@ python main_train.py --model_name RAN4 --data_name unpaired_ct_abdomen --max_epo
 
 ### 2.3. Inference ###
 1. Run ```python main_infer.py --model_name $model_name --data_name $data_name```
-2. Check the results in ```res_aligner_net/data/$data_name/dataset/test/```
+2. Check the results in ```res_aligner_net/data/$data_name/dataset/test_proc/warped_img```
 
 <div align="center">
 
@@ -179,12 +179,13 @@ python main_train.py --model_name RAN4 --data_name unpaired_ct_abdomen --max_epo
 ```shell
 python main_infer.py --model_name RAN4 --data_name unpaired_ct_abdomen
 ```
-2. Check the results in ```res_aligner_net/data/unpaired_ct_abdomen/dataset/test/```
+2. Check the results in ```res_aligner_net/data/unpaired_ct_abdomen/dataset/test_proc/warped_img```
 
 ---
 ## 3. Demo ##
-A demo can be found in the provided [notebook](https://github.com/jianqingzheng/res_aligner_net/blob/main/res_aligner_net.ipynb)
-or it can be easily run via [![Explore RAN in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jianqingzheng/res_aligner_net/blob/main/res_aligner_net.ipynb).
+A demo can be found in the provided [notebook](https://github.com/jianqingzheng/res_aligner_net/blob/main/res_aligner_net.ipynb).
+
+Alternatively, it can be easily run via [![Explore RAN in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jianqingzheng/res_aligner_net/blob/main/res_aligner_net.ipynb).
 
 ---
 
