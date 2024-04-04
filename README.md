@@ -59,7 +59,7 @@ install packages
 [![OS](https://img.shields.io/badge/OS-Windows%7CLinux-darkblue)]()
 [![PyPI pyversions](https://img.shields.io/badge/Python-3.8-blue)](https://pypi.python.org/pypi/ansicolortags/)
 [![TensorFlow](https://img.shields.io/badge/TensorFlow-2.3.1-lightblue)](www.tensorflow.org)
-[![Numpy](https://img.shields.io/badge/Numpy-1.21.4-lightblue)](https://numpy.org)
+[![Numpy](https://img.shields.io/badge/Numpy-1.19.5-lightblue)](https://numpy.org)
 
 ```shell
 pip install tensorflow==2.3.1
