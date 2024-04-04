@@ -60,12 +60,11 @@ install packages
 [![PyPI pyversions](https://img.shields.io/badge/Python-3.8-blue)](https://pypi.python.org/pypi/ansicolortags/)
 [![TensorFlow](https://img.shields.io/badge/TensorFlow-2.3.1-lightblue)](www.tensorflow.org)
 [![Numpy](https://img.shields.io/badge/Numpy-1.21.4-lightblue)](https://numpy.org)
-[![Pandas](https://img.shields.io/badge/Pandas-1.2.4-lightblue)](https://pandas.pydata.org/)
 
 ```shell
 pip install tensorflow==2.3.1
 pip install numpy==1.19.5
-pip install pandas==1.2.4
+pip install pyquaternion==0.9.9
 ```
 
 > Other versions of the packages could also be applicable
@@ -100,13 +99,18 @@ pip install pandas==1.2.4
 |       └── ...
 └── ...
 ```
+
+1a. Run ```python external/deepreg/abd_data.py``` to download and setup abdominal CT
+1b. Run ```python external/deepreg/lung_data.py``` to download and setup lung CT
+2. Run ```python main_preprocess.py --proc_type train --data_name $data_name```
+3. Run ```python main_preprocess.py --proc_type test --data_name $data_name```
+
 > The data used for experiments in this paper are publicly available from [abdomen CT](https://github.com/ucl-candi/datasets_deepreg_demo/archive/abdct.zip) and [lung CT](https://zenodo.org/record/3835682).
 
-### 2.2. Training (>1 week) ###
 
-1. Run ```python main_preprocess.py --proc_type train --data_name $data_name```
-2. Run ```python main_train.py --model_name $model_name --data_name $data_name --max_epochs $max_epochs```
-3. Check the saved model in ```res_aligner_net/models/$data_name/$data_name-$model_name/```
+### 2.2. Training (>1 week) ###
+1. Run ```python main_train.py --model_name $model_name --data_name $data_name --max_epochs $max_epochs```
+2. Check the saved model in ```res_aligner_net/models/$data_name/$data_name-$model_name/```
 
 <div align="center">
 	
@@ -115,6 +119,8 @@ pip install pandas==1.2.4
 | `--data_name` 	      | The data folder name                    |
 | `--model_name`        | The used model                      	     	|
 | `--max_epochs`        | The max epoch number for training 	     	|
+
+> `max_epochs==0` for training from scratch
 
 </div>
 
@@ -133,16 +139,20 @@ python main_train.py --model_name RAN4 --data_name unpaired_ct_abdomen --max_epo
 
 
 ### 2.3. Inference ###
-1. Run ```python main_preprocess.py --proc_type test --data_name $data_name```
-2. Run ```python main_infer.py --model_name $model_name --data_name $data_name```
-3. Check the results in ```res_aligner_net/data/$data_name/dataset/test/```
+1. Run ```python main_infer.py --model_name $model_name --data_name $data_name```
+2. Check the results in ```res_aligner_net/data/$data_name/dataset/test/```
 
 <div align="center">
 
 | Argument              | Description                                	|
 | --------------------- | ----------------------------------------------|
 | `--data_name` 	| The data folder name                       	|
-| `--model_name`        | The used model                      	     	|
+| `--model_name`        | The used network structure                    |
+| `--model_id`         | The index of the model                      	|
+
+> `model_id==1` for a model after synthetic training,
+> `model_id==2` for a model after real training,
+> `model_id==3` for the model trained according to the paper's settings.
 
 </div>
 
@@ -157,6 +167,7 @@ python main_preprocess.py --proc_type test --data_name unpaired_ct_abdomen
 python main_infer.py --model_name RAN4 --data_name unpaired_ct_abdomen
 ```
 3. Check the results in ```res_aligner_net/data/unpaired_ct_abdomen/dataset/test/```
+
 
 
 ---
