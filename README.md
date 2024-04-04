@@ -20,7 +20,8 @@ Code for *Medical Image Analysis* paper [Residual Aligner-based Network (RAN): M
   - [2.1. Setup (for unpaired data)](#21-setup-for-unpaired-data)
   - [2.2. Training (>1 week)](#22-training-1-week)
   - [2.3. Inference](#23-inference)
-- [3. Citing this work](#3-citing-this-work)
+- [3. Demo](#3-demo)
+- [4. Citing this work](#4-citing-this-work)
 
 ---
 
@@ -104,6 +105,27 @@ pip install pyquaternion==0.9.9
 2. Run ```python main_preprocess.py --proc_type train --data_name $data_name```
 3. Run ```python main_preprocess.py --proc_type test --data_name $data_name```
 
+<div align="center">
+	
+| Argument              | Description                                	|
+| --------------------- | ----------------------------------------------|
+| `--data_name` 	      | The data folder name                    |
+
+</div>
+
+\* Example for the setup (unpaired_ct_abdomen):
+
+1. Run 
+```shell
+python external/deepreg/abd_data.py
+```
+2. Run 
+```shell
+python main_preprocess.py --proc_type train --data_name unpaired_ct_abdomen
+python main_preprocess.py --proc_type test --data_name unpaired_ct_abdomen
+```
+
+
 > The data used for experiments in this paper are publicly available from [abdomen CT](https://github.com/ucl-candi/datasets_deepreg_demo/archive/abdct.zip) and [lung CT](https://zenodo.org/record/3835682).
 
 
@@ -127,13 +149,9 @@ pip install pyquaternion==0.9.9
 
 1. Run
 ```shell
-python main_preprocess.py --proc_type train --data_name unpaired_ct_abdomen
-```
-2. Run
-```shell
 python main_train.py --model_name RAN4 --data_name unpaired_ct_abdomen --max_epochs 0
 ```
-3. Check the saved model in ```res_aligner_net/models/unpaired_ct_abdomen/unpaired_ct_abdomen-RAN4/```
+2. Check the saved model in ```res_aligner_net/models/unpaired_ct_abdomen/unpaired_ct_abdomen-RAN4/```
 
 
 
@@ -159,19 +177,18 @@ python main_train.py --model_name RAN4 --data_name unpaired_ct_abdomen --max_epo
 
 1. Run
 ```shell
-python main_preprocess.py --proc_type test --data_name unpaired_ct_abdomen
-```
-2. Run
-```shell
 python main_infer.py --model_name RAN4 --data_name unpaired_ct_abdomen
 ```
-3. Check the results in ```res_aligner_net/data/unpaired_ct_abdomen/dataset/test/```
+2. Check the results in ```res_aligner_net/data/unpaired_ct_abdomen/dataset/test/```
 
-
+---
+## 3. Demo ##
+A demo can be found in the provided [notebook](https://github/jianqingzheng/res_aligner_net/blob/main/res_aligner_net.ipynb)
+or it can be easily run via [![Explore RAN in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jianqingzheng/res_aligner_net/blob/main/res_aligner_net.ipynb).
 
 ---
 
-## 3. Citing this work
+## 4. Citing this work
 
 Any publication that discloses findings arising from using this source code or the network model should cite:
 - Zheng, J. Q., Wang, Z., Huang, B., Lim, N. H., & Papież, B. W. "Residual Aligner-based Network (RAN): Motion-separable structure for coarse-to-fine discontinuous deformable registration." *Medical Image Analysis*, 2024, 91: 103038.
