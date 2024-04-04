@@ -21,6 +21,15 @@ parser.add_argument(
         required=False,
     )
 parser.add_argument(
+        "--model_id",
+        "-mi",
+        help="network for training."
+        "-mn for ",
+        type=int,
+        default=3,
+        required=False,
+    )
+parser.add_argument(
         "--data_name",
         "-dn",
         help="data name for training."
@@ -51,7 +60,7 @@ net_core = func.networks.get_net(model_name)
 # use_lab=True
 use_lab=False
 
-model_path=os.path.join('.','models',data_name,data_name+'-'+model_name,'model')
+model_path=os.path.join('.','models',data_name,data_name+'-'+model_name,'model_'+str(args.model_id))
 data_path=os.path.join('.','data',data_name,'dataset')
 
 print(os.path.abspath(data_path))

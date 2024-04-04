@@ -35,15 +35,15 @@ def infer(net_core=None, model_path=None, crop_sz=None, rescale_factor=None,resc
         volshape = np.add(nib.load(test_paths[0]).dataobj.shape * np.array(rescale_factor), -2 * crop_sz).astype(int)
     warped_img_dir = os.path.join(test_path, 'warped_img')
     # warped_lab_dir = os.path.join(test_path, 'warped_lab')
-    model_pth_name=os.path.basename(os.path.dirname(model_path))
-    eval_result_dir = os.path.join(test_path, 'eval_result',model_pth_name+'.xlsx')
-    print(eval_result_dir)
-    tmpdir=os.path.dirname(eval_result_dir)
-    if not os.path.exists(tmpdir):
-        os.makedirs(tmpdir)
-        print('Directory created: ' + tmpdir)
-    else:
-        print('Directory already exists: ' + tmpdir)
+    # model_pth_name=os.path.basename(os.path.dirname(model_path))
+    # eval_result_dir = os.path.join(test_path, 'eval_result',model_pth_name+'.xlsx')
+    # print(eval_result_dir)
+    # tmpdir=os.path.dirname(eval_result_dir)
+    # if not os.path.exists(tmpdir):
+    #     os.makedirs(tmpdir)
+    #     print('Directory created: ' + tmpdir)
+    # else:
+    #     print('Directory already exists: ' + tmpdir)
 
     ndims = len(volshape)
     vol_num = len(test_paths)
@@ -126,17 +126,6 @@ def infer(net_core=None, model_path=None, crop_sz=None, rescale_factor=None,resc
                 src_labels =np.expand_dims(src_labels,-1)
             inputs = [src_images, tgt_images, src_labels]
             outputs = [tgt_images, zero_phi, tgt_labels]
-        # else:
-        #     crop = crop_sz
-        #     tgt_images = img_crop(
-        #         np.stack([preprocess(nib.load(mv_path[id]).dataobj) for id in idx1], 0),
-        #         crop_sz=crop, random_crop=random_crop, img_sz=volshape)
-        #     idx2 = idx1 if pair_type == 'paired' else idx2
-        #     src_images = img_crop(
-        #         np.stack([preprocess(nib.load(src_path[id]).dataobj) for id in idx2], 0),
-        #         crop_sz=crop, random_crop=random_crop, img_sz=volshape)
-        #     inputs = [src_images, tgt_images]
-        #     outputs = [tgt_images, zero_phi]
         return inputs,outputs
 
 
@@ -177,8 +166,10 @@ def infer(net_core=None, model_path=None, crop_sz=None, rescale_factor=None,resc
         sess = tf.Session()
         sess.run(tf.global_variables_initializer())
         # save_path = model_path + "_1.tf"
-        save_path = model_path + "_3.tf"
-        saver.restore(sess, save_path)
+        # save_path = model_path + "_3.tf"
+        save_path = model_path + ".tf"
+
+        saver.restore(sess, save_path, )
 
         for idx1 in range(vol_num):  #
             idx_list=list(range(idx1)) + list(range(idx1 + 1, vol_num))
