@@ -3,7 +3,7 @@
 
 [![DOI](https://img.shields.io/badge/DOI-j.media.2023.103038-darkyellow)](https://doi.org/10.1016/j.media.2023.103038) \| 
 [![arXiv](https://img.shields.io/badge/arXiv-2203.04290-b31b1b.svg)](https://arxiv.org/abs/2203.04290) \|
-[![Explore RAN in Colab](https://colab.research.google.com/assets/colab-badge.svg)]()
+[![Explore RAN in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jianqingzheng/res_aligner_net/blob/main/res_aligner_net.ipynb)
 
 </div>
 
