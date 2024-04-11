@@ -92,7 +92,7 @@ pip install pyquaternion==0.9.9
 |   |	└── labels/
 |   |       ├──0001.nii.gz
 |   |       └── ...
-└── models/[$data_name]/
+├── models/[$data_name]/
 |   └── [$data_name]-[$model_name]/
 |       |   # the files of model parameters (.tf.index and .tf.data-000000-of-00001 files)
 |       ├── model_1_[$model_num].tf.index
