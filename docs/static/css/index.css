@@ -127,7 +127,7 @@ body {
     justify-content: center; /* Center horizontally */
     align-items: center;     /* Center vertically */
     /*vertical-align: middle;*/
-    horiz-align: center;
+    /*horiz-align: center;*/
 }
 
 .results-carousel .item {
@@ -140,7 +140,7 @@ body {
     /*place-items: center;*/
     /*text-align: center;*/
     /*vertical-align: middle;*/
-    horiz-align: center;
+    /*horiz-align: center;*/
     text-align: center;  /* Center text and inline elements horizontally */
     /*display: flex;*/
     /*justify-content: center;*/
