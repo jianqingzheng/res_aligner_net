@@ -132,9 +132,12 @@ body {
   overflow: hidden;
   padding: 20px;
   font-size: 0;
+  align-content: center;
   align-items: center;
   img {
       max-height: 600px;
+      align-content: center;
+      align-items: center;
   }
 }
 
