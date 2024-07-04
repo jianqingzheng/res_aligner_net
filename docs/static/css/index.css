@@ -129,6 +129,7 @@ body {
 .results-carousel .item {
   margin: 5px;
   overflow: hidden;
+  max-height: 600px;
   padding: 20px;
   font-size: 0;
 }
