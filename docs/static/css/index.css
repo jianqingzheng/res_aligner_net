@@ -138,6 +138,8 @@ body {
     align-items: center;
     place-items: center;
     text-align: center;
+    display: flex;
+    justify-content: center;
 }
 .results-carousel img {
       max-height: 600px;
