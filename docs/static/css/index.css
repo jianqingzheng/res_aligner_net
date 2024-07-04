@@ -128,17 +128,17 @@ body {
 }
 
 .results-carousel .item {
-  margin: 5px;
-  overflow: hidden;
-  padding: 20px;
-  font-size: 0;
-  align-content: center;
-  align-items: center;
-  img {
+    margin: 5px;
+    overflow: hidden;
+    padding: 20px;
+    font-size: 0;
+    align-content: center;
+    align-items: center;
+}
+.results-carousel img {
       max-height: 600px;
       align-content: center;
       align-items: center;
-  }
 }
 
 .results-carousel video {
