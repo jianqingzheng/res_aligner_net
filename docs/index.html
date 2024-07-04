@@ -190,37 +190,50 @@
   <div class="hero-body">
     <div class="container">
       <div id="results-carousel" class="carousel results-carousel">
-       <div class="item">
+        <div class="item">
         <!-- Your image here -->
-        <img src="static/images/carousel1.jpg" alt="MY ALT TEXT"/>
+        <img src="static/images/networks_types.png" alt="MY ALT TEXT"/>
         <h2 class="subtitle has-text-centered">
-          First image description.
+          Fig. 1: The registration framework of our proposed Motion-Separable or
+          Feature Pyramid (MS/FP) based Residual Aligner Network (RAN) structure,
+          Direct Regression (DR), Attention-based registration, and Cascaded
+          (Cas) network. The MS or FP backbone networks (the difference detailed
+          in Fig. 3) extract the features and output feature maps and the stacked
+          Residual Aligner modules (see more in Fig. 4) align and connect the data
+          streams from the input images.
         </h2>
       </div>
-      <div class="item">
+        <div class="item">
         <!-- Your image here -->
-        <img src="static/images/carousel2.jpg" alt="MY ALT TEXT"/>
+        <img src="static/images/motion_sep.png" alt="MY ALT TEXT"/>
         <h2 class="subtitle has-text-centered">
-          Second image description.
+          Fig. 2: Illustration of the motion inseparable problem in the coarse-to-fine
+          alignment of two neighbouring organs, with differing motions of two exemplar
+          points (× and △). (a) Failed capture of point △ is due to the lowresolution
+          feature pyramid. (b) Our proposed solution utilizes upsampling
+          layers + dilated convolutions in the Motion-Separable structure to improve
+          the differentiation of different organs’ motions (analyzed in Sec. 2 and detailed
+          in Fig. 3), and a Multi-Head mask (detailed in Fig. 4) to disentangle
+          the motions of different organs, while maintaing the same receptive field.
         </h2>
       </div>
-      <div class="item">
+        <div class="item">
         <!-- Your image here -->
-        <img src="static/images/carousel3.jpg" alt="MY ALT TEXT"/>
+        <img src="static/images/mafcn.png" alt="MY ALT TEXT"/>
         <h2 class="subtitle has-text-centered">
-         Third image description.
-       </h2>
+          Fig. 3: The design and theoretical analysis of Fully Convolution Networks
+          (FCN) backbone for feature extraction. (a) Motion-Separable Structures
+          designed with a varying number of motion-separable layers q, where the
+          feature maps from the encoder part are upsampled and concatenated to
+          the decoder part, (b) with different hyper-parameter setting, showing that
+          a higher q, (c) with almost the same ak, achieves a higher area under the
+          curve of the motion separability bottleneck Δ∞(p), referring to Eq. (4) and
+          Eq. (8) (unit: pix/vox).
+        </h2>
      </div>
-     <div class="item">
-      <!-- Your image here -->
-      <img src="static/images/carousel4.jpg" alt="MY ALT TEXT"/>
-      <h2 class="subtitle has-text-centered">
-        Fourth image description.
-      </h2>
+      </div>
     </div>
   </div>
-</div>
-</div>
 </section>
 <!-- End image carousel -->
 
@@ -235,11 +248,11 @@
       <h2 class="title is-3">Video Presentation</h2>
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
-          
-          <div class="publication-video">
-            <!-- Youtube embed code here -->
-            <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-          </div>
+          <img src="static/images/deformable_reg.gif" alt="sym" title="One registration example.">
+<!--          <div class="publication-video">-->
+<!--            &lt;!&ndash; Youtube embed code here &ndash;&gt;-->
+<!--            <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>-->
+<!--          </div>-->
         </div>
       </div>
     </div>
@@ -248,38 +261,38 @@
 <!-- End youtube video -->
 
 
-<!-- Video carousel -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title is-3">Another Carousel</h2>
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-video1">
-          <video poster="" id="video1" autoplay controls muted loop height="100%">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel1.mp4"
-            type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video2">
-          <video poster="" id="video2" autoplay controls muted loop height="100%">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel2.mp4"
-            type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video3">
-          <video poster="" id="video3" autoplay controls muted loop height="100%">\
-            <!-- Your video file here -->
-            <source src="static/videos/carousel3.mp4"
-            type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End video carousel -->
+<!--&lt;!&ndash; Video carousel &ndash;&gt;-->
+<!--<section class="hero is-small">-->
+<!--  <div class="hero-body">-->
+<!--    <div class="container">-->
+<!--      <h2 class="title is-3">Another Carousel</h2>-->
+<!--      <div id="results-carousel" class="carousel results-carousel">-->
+<!--        <div class="item item-video1">-->
+<!--          <video poster="" id="video1" autoplay controls muted loop height="100%">-->
+<!--            &lt;!&ndash; Your video file here &ndash;&gt;-->
+<!--            <source src="static/videos/carousel1.mp4"-->
+<!--            type="video/mp4">-->
+<!--          </video>-->
+<!--        </div>-->
+<!--        <div class="item item-video2">-->
+<!--          <video poster="" id="video2" autoplay controls muted loop height="100%">-->
+<!--            &lt;!&ndash; Your video file here &ndash;&gt;-->
+<!--            <source src="static/videos/carousel2.mp4"-->
+<!--            type="video/mp4">-->
+<!--          </video>-->
+<!--        </div>-->
+<!--        <div class="item item-video3">-->
+<!--          <video poster="" id="video3" autoplay controls muted loop height="100%">\-->
+<!--            &lt;!&ndash; Your video file here &ndash;&gt;-->
+<!--            <source src="static/videos/carousel3.mp4"-->
+<!--            type="video/mp4">-->
+<!--          </video>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</section>-->
+<!--&lt;!&ndash; End video carousel &ndash;&gt;-->
 
 
 
@@ -291,9 +304,9 @@
   <div class="hero-body">
     <div class="container">
       <h2 class="title">Poster</h2>
-
-      <iframe  src="static/pdfs/sample.pdf" width="100%" height="550">
-          </iframe>
+      <iframe id="fold_content" src="https://colab.research.google.com/github/jianqingzheng/res_aligner_net/blob/main/res_aligner_net.ipynb" style="border:0px;overflow: hidden; width:100%; height:550; background-color: #FFFAB9;transition: height 0.2s; position: fixed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<!--      <iframe  src="static/pdfs/sample.pdf" width="100%" height="550">-->
+<!--          </iframe>-->
         
       </div>
     </div>
@@ -330,7 +343,7 @@
       <div class="column is-8">
         <div class="content">
 
-          <p>
+          <p style="color: gray">
             <small>
             This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
             <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
