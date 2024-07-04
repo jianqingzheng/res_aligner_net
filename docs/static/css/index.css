@@ -123,8 +123,10 @@ body {
 }
 
 .results-carousel {
-  overflow: hidden;
-  align-items: center;
+    overflow: hidden;
+    align-items: center;
+    place-items: center;
+    text-align: center;
 }
 
 .results-carousel .item {
