@@ -124,6 +124,8 @@ body {
 
 .results-carousel {
     overflow: hidden;
+    justify-content: center; /* Center horizontally */
+    align-items: center;     /* Center vertically */
     /*vertical-align: middle;*/
     horiz-align: center;
 }
@@ -139,11 +141,13 @@ body {
     /*text-align: center;*/
     /*vertical-align: middle;*/
     horiz-align: center;
+    text-align: center;  /* Center text and inline elements horizontally */
     /*display: flex;*/
     /*justify-content: center;*/
 }
 .results-carousel img {
-      max-height: 600px;
+    max-height: 600px;
+    height: auto;
 }
 
 .results-carousel video {
