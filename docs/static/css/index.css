@@ -124,6 +124,7 @@ body {
 
 .results-carousel {
   overflow: hidden;
+  align-items: center;
 }
 
 .results-carousel .item {
@@ -131,6 +132,7 @@ body {
   overflow: hidden;
   padding: 20px;
   font-size: 0;
+  align-items: center;
   img {
       max-height: 600px;
   }
