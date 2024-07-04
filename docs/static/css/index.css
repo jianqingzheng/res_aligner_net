@@ -134,6 +134,7 @@ body {
     font-size: 0;
     align-content: center;
     align-items: center;
+    place-items: center;
 }
 .results-carousel img {
       max-height: 600px;
