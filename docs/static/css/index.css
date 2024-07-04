@@ -124,7 +124,8 @@ body {
 
 .results-carousel {
     overflow: hidden;
-    vertical-align: middle;
+    /*vertical-align: middle;*/
+    horiz-align: center;
 }
 
 .results-carousel .item {
@@ -136,7 +137,8 @@ body {
     /*align-items: center;*/
     /*place-items: center;*/
     /*text-align: center;*/
-    vertical-align: middle;
+    /*vertical-align: middle;*/
+    horiz-align: center;
     /*display: flex;*/
     /*justify-content: center;*/
 }
