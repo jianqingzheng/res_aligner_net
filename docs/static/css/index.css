@@ -127,6 +127,7 @@ body {
     align-items: center;
     place-items: center;
     text-align: center;
+    vertical-align: middle;
 }
 
 .results-carousel .item {
@@ -134,12 +135,13 @@ body {
     overflow: hidden;
     padding: 20px;
     font-size: 0;
-    align-content: center;
-    align-items: center;
-    place-items: center;
-    text-align: center;
-    display: flex;
-    justify-content: center;
+    /*align-content: center;*/
+    /*align-items: center;*/
+    /*place-items: center;*/
+    /*text-align: center;*/
+    vertical-align: middle;
+    /*display: flex;*/
+    /*justify-content: center;*/
 }
 .results-carousel img {
       max-height: 600px;
