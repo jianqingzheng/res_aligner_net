@@ -33,11 +33,11 @@ body {
     position: absolute;
     //position: fixed;
     //z-index: 10;
-    margin-top: .5em;
+    margin-top: 2.5em;
     margin-left: -.5em;
     color: white;
-    background-color: rgba(0,32,48,0.7);
-    font-size: 1em;
+    background-color: rgba(0,32,48,0.6);
+    font-size: 5em;
 }
 
 .publication-title {
