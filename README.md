@@ -1,5 +1,5 @@
 <div align="center">
-<h1> Residual Aligner-based Network (RAN) for Coarse-to-fine Discontinuous Deformable Registration </h1>
+<h1> Residual Aligner-based Network (RAN) <br /> <small>for Coarse-to-fine Discontinuous Deformable Registration</small> </h1>
 
 <a href="https://jianqingzheng.github.io/res_aligner_net/"><img alt="Website" src="https://img.shields.io/website?url=https%3A%2F%2Fjianqingzheng.github.io%2Fres_aligner_net%2F&up_message=accessible&up_color=darkcyan&down_message=inaccessible&down_color=darkgray&label=Project%20Page"></a>
 [![DOI](https://img.shields.io/badge/DOI-j.media.2023.103038-darkyellow)](https://doi.org/10.1016/j.media.2023.103038) 
