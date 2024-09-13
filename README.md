@@ -82,17 +82,17 @@ pip install pyquaternion==0.9.9
 |   |   # experimental dataset for training and testing (.nii|.nii.gz files)
 |   ├── train/
 |   |	├── images/
-|   |   |   ├──0001.nii.gz
+|   |   |   ├── 0001.nii.gz
 |   |   |   └── ...
 |   |	├── labels/
-|   |   |   ├──0001.nii.gz
+|   |   |   ├── 0001.nii.gz
 |   |   |   └── ...
 |   ├── test/
 |   |	├── images/
-|   |   |   ├──0001.nii.gz
+|   |   |   ├── 0001.nii.gz
 |   |   |   └── ...
 |   |	└── labels/
-|   |       ├──0001.nii.gz
+|   |       ├── 0001.nii.gz
 |   |       └── ...
 ├── models/[$data_name]/
 |   └── [$data_name]-[$model_name]/
