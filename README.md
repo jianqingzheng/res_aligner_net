@@ -84,16 +84,16 @@ pip install pyquaternion==0.9.9
 |   |	├── images/
 |   |   |   ├── 0001.nii.gz
 |   |   |   └── ...
-|   |	├── labels/
-|   |   |   ├── 0001.nii.gz
-|   |   |   └── ...
-|   ├── test/
-|   |	├── images/
-|   |   |   ├── 0001.nii.gz
-|   |   |   └── ...
 |   |	└── labels/
 |   |       ├── 0001.nii.gz
 |   |       └── ...
+|   └── test/
+|    	├── images/
+|       |   ├── 0001.nii.gz
+|       |   └── ...
+|    	└── labels/
+|           ├── 0001.nii.gz
+|           └── ...
 ├── models/[$data_name]/
 |   └── [$data_name]-[$model_name]/
 |       |   # the files of model parameters (.tf.index and .tf.data-000000-of-00001 files)
