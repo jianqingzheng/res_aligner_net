@@ -156,7 +156,7 @@ def train(net_core=None, model_path=None, crop_sz=None, rescale_factor=None, num
         pred_disp = disp_conv(net_out_syn)
         pred_img = stn([input_src_image, pred_disp])
 
-        train_generator = real_data_generator(train_paths, batch_size=batch_size,int_range=int_range)
+        train_generator = real_data_generator(train_paths, batch_size=batch_size,int_range=int_range, crop_sz=crop_sz)
 
         # -------------loss and optimizer-------------
         init_lr = 0.0001
