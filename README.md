@@ -185,7 +185,7 @@ python main_infer.py --model_name RAN4 --data_name unpaired_ct_abdomen
 2. Check the results in ```res_aligner_net/data/unpaired_ct_abdomen/dataset/test_proc/warped_img```
 
 ---
-## 3. Demo ##
+## 3. Demo and Tutorial ##
 A demo can be found in the provided [notebook](https://github.com/jianqingzheng/res_aligner_net/blob/main/res_aligner_net.ipynb).
 
 Alternatively, it can be easily run via [![Explore RAN in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jianqingzheng/res_aligner_net/blob/main/res_aligner_net.ipynb).
