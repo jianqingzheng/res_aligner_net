@@ -5,6 +5,7 @@
 [![DOI](https://img.shields.io/badge/DOI-j.media.2023.103038-darkyellow)](https://doi.org/10.1016/j.media.2023.103038) 
 [![arXiv](https://img.shields.io/badge/arXiv-2203.04290-b31b1b.svg)](https://arxiv.org/abs/2203.04290)
 [![Explore RAN in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jianqingzheng/res_aligner_net/blob/main/res_aligner_net.ipynb)
+<a href="https://zread.ai/jianqingzheng/res_aligner_net"><img alt="User Manual" src="https://img.shields.io/website?url=https%3A%2F%2Fzread.ai%2Fjianqingzheng%2Fres_aligner_net%2F&up_message=online&up_color=darkgreen&down_message=offline&down_color=darkgray&label=User%20Manual"></a>
 
 <img src="docs/static/images/deformable_reg.gif" alt="Website" width="100%" />
 </div>
@@ -22,7 +23,7 @@ Code for *Medical Image Analysis* paper [Residual Aligner-based Network (RAN): M
   - [2.1. Setup (for unpaired data)](#21-setup-for-unpaired-data)
   - [2.2. Training (>1 week)](#22-training-1-week)
   - [2.3. Inference](#23-inference)
-- [3. Demo](#3-demo)
+- [3. Demo and Tutorial](#3-demo-and-tutorial)
 - [4. Citing this work](#4-citing-this-work)
 
 ---
@@ -188,6 +189,8 @@ python main_infer.py --model_name RAN4 --data_name unpaired_ct_abdomen
 A demo can be found in the provided [notebook](https://github.com/jianqingzheng/res_aligner_net/blob/main/res_aligner_net.ipynb).
 
 Alternatively, it can be easily run via [![Explore RAN in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jianqingzheng/res_aligner_net/blob/main/res_aligner_net.ipynb).
+
+Additionally, a detailed tutorial can be found in the provided <a href="https://zread.ai/jianqingzheng/res_aligner_net"><img alt="User Manual" src="https://img.shields.io/website?url=https%3A%2F%2Fzread.ai%2Fjianqingzheng%2Fres_aligner_net%2F&up_message=online&up_color=darkgreen&down_message=offline&down_color=darkgray&label=User%20Manual"></a> (powered by Zread.ai).
 
 ---
 
