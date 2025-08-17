@@ -6,7 +6,6 @@
 [![arXiv](https://img.shields.io/badge/arXiv-2203.04290-b31b1b.svg)](https://arxiv.org/abs/2203.04290)
 [![Explore RAN in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jianqingzheng/res_aligner_net/blob/main/res_aligner_net.ipynb)
 <a href="https://zread.ai/jianqingzheng/res_aligner_net"><img alt="User Manual" src="https://img.shields.io/website?url=https%3A%2F%2Fzread.ai%2Fjianqingzheng%2Fres_aligner_net%2F&up_message=online&up_color=darkgreen&down_message=offline&down_color=darkgray&label=User%20Manual"></a>
-<a href="https://zread.ai/jianqingzheng/def_diff_rec"><img alt="User Manual" src="https://img.shields.io/website?url=https%3A%2F%2Fzread.ai%2Fjianqingzheng%2Fdef_diff_rec%2F&up_message=online&up_color=darkgreen&down_message=offline&down_color=darkgray&label=User%20Manual"></a>
 
 <img src="docs/static/images/deformable_reg.gif" alt="Website" width="100%" />
 </div>
